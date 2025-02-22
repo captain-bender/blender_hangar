@@ -1,16 +1,17 @@
 import bpy
+import yaml
 
-offset_x = -61.5  
-offset_y = -13.6 
+offset_x = -43.55  
+offset_y = -13.8 
 offset_z = 0.0 
 
 # Camera specifications
-sensor_width_mm = 36  # Example: Width of the camera sensor in mm
-sensor_height_mm = 24  # Example: Height of the camera sensor in mm
-resolution_width_px = 6000  # Width in pixels
-resolution_height_px = 4000  # Height in pixels
-pixel_size_um = 4.2  # Pixel size in micrometers
-focal_length_mm = 50  # Focal length in mm
+sensor_width_mm = 12.3  # Example: Width of the camera sensor in mm
+sensor_height_mm = 12.3  # Example: Height of the camera sensor in mm
+resolution_width_px = 4504  # Width in pixels
+resolution_height_px = 4504  # Height in pixels
+pixel_size_um = 2.74  # Pixel size in micrometers
+focal_length_mm = 18  # Focal length in mm
 
 # Create a new camera
 def create_camera(name, location, rotation):
@@ -44,23 +45,41 @@ def set_render_settings(resolution_x, resolution_y, output_path):
     scene.render.image_settings.file_format = 'PNG'
     scene.render.filepath = output_path
 
+# Load cameras from YAML file
+def load_cameras_from_yaml(filepath):
+    with open(filepath, 'r') as file:
+        data = yaml.safe_load(file)
+    return data
+
 # Main execution
 if __name__ == "__main__":
-    print('Create and position the camera')
-    camera = create_camera("Camera_1", (17.6, 2, 18), (0, 0, 1.5708))
+    yaml_path = "C:/Users/Bende/Documents/blender_hangar/cameras_case_A.yaml"
+    cameras = load_cameras_from_yaml(yaml_path)
     
-    # Set it as the active camera
-    bpy.context.scene.camera = camera
+    for cam in cameras['cameras']:
+        cam_id = cam['id']
+        location = cam['location']  # Example: [x, y, z]
+        rotation = cam['rotation']  # Example: [rot_x, rot_y, rot_z]
     
-    # Use Eevee for faster rendering
-    bpy.context.scene.render.engine = 'BLENDER_EEVEE_NEXT'
-    
-    # Configure render settings
-    set_render_settings(resolution_width_px, resolution_height_px, 'C:/Users/Bende/Documents/render.png')
-    
-    print("Rendering started!")
+        # Create and position the camera
+        camera_name = f"Camera_{cam_id}"
+        camera = create_camera(camera_name, location, rotation)
+        
+        # Set it as the active camera
+        bpy.context.scene.camera = camera
+        
+        # Use Eevee for faster rendering
+        bpy.context.scene.render.engine = 'BLENDER_EEVEE_NEXT'
+        
+        # Configure render settings
+        output_path = f"C:/Users/Bende/Documents/blender_hangar/case_AS/render_{cam_id}.png"
+        
+        # Configure render settings
+        set_render_settings(resolution_width_px, resolution_height_px, output_path)
+        
+        print(f"Rendering started for {camera_name}!")
 
-    # Render the image
-    bpy.ops.render.render(write_still=True)
+        # Render the image
+        bpy.ops.render.render(write_still=True)
 
-    print("Rendering completd!")
+        print(f"Rendering completed for {camera_name}!")
