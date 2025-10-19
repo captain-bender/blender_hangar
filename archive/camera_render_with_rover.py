@@ -171,7 +171,7 @@ if __name__ == "__main__":
     print("\nSTEP 2: Loading camera configuration...")
     print("-" * 60)
     
-    yaml_path = "C:/Users/Bende/Documents/blender_hangar/cameras_case_D.yaml"
+    yaml_path = "C:/Users/Bende/Documents/blender_hangar/cameras_locations/cameras_case_D.yaml"
     cameras = load_cameras_from_yaml(yaml_path)
     
     if cameras is None:
@@ -223,7 +223,7 @@ if __name__ == "__main__":
                 continue
             
             # Configure render output
-            output_path = f"C:/Users/Bende/Documents/blender_hangar/case_D/render_{cam_id}_{rover_id}.png"
+            output_path = f"C:/Users/Bende/Documents/blender_hangar/renderings/render_{cam_id}_{rover_id}.png"
             set_render_settings(resolution_width_px, resolution_height_px, output_path)
             
             # Render
