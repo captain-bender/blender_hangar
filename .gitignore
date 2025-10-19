@@ -1,4 +1,4 @@
-# not include blend files due to the size
+# not include the following folders
 scenes/
 case_A/
 case_B/
