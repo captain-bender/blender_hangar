@@ -1,10 +1,6 @@
 # not include the following folders
 scenes/
-case_A/
-case_B/
-case_C/
-case_D/
-case_AS/
+renderings/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
