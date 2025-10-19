@@ -6,11 +6,11 @@ offset_y = -13.8
 offset_z = 0.0 
 
 # Camera specifications
-sensor_width_mm = 12.3  # Example: Width of the camera sensor in mm
-sensor_height_mm = 12.3  # Example: Height of the camera sensor in mm
-resolution_width_px = 4504  # Width in pixels
-resolution_height_px = 4504  # Height in pixels
-pixel_size_um = 2.74  # Pixel size in micrometers
+sensor_width_mm = 11.25  # Example: Width of the camera sensor in mm
+sensor_height_mm = 7.03  # Example: Height of the camera sensor in mm
+resolution_width_px = 1920  # Width in pixels
+resolution_height_px = 1200  # Height in pixels
+pixel_size_um = 5.86  # Pixel size in micrometers
 focal_length_mm = 18  # Focal length in mm
 
 # Create a new camera
@@ -53,7 +53,7 @@ def load_cameras_from_yaml(filepath):
 
 # Main execution
 if __name__ == "__main__":
-    yaml_path = "C:/Users/Bende/Documents/blender_hangar/cameras_case_A.yaml"
+    yaml_path = "C:/Users/Bende/Documents/blender_hangar/cameras_case_D.yaml"
     cameras = load_cameras_from_yaml(yaml_path)
     
     for cam in cameras['cameras']:
@@ -72,7 +72,7 @@ if __name__ == "__main__":
         bpy.context.scene.render.engine = 'BLENDER_EEVEE_NEXT'
         
         # Configure render settings
-        output_path = f"C:/Users/Bende/Documents/blender_hangar/case_AS/render_{cam_id}.png"
+        output_path = f"C:/Users/Bende/Documents/blender_hangar/case_D/render_{cam_id}.png"
         
         # Configure render settings
         set_render_settings(resolution_width_px, resolution_height_px, output_path)
