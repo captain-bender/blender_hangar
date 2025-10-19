@@ -1,6 +1,10 @@
 # not include blend files due to the size
-scenes/*.blend
-scenes/*.blend1
+scenes/
+case_A/
+case_B/
+case_C/
+case_D/
+case_AS/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
