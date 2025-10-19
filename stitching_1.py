@@ -2,8 +2,12 @@ import cv2
 import numpy as np
 
 # Load images
-img1 = cv2.imread('C:/Users/Bende/Documents/blender_hangar/render_1.png')
-img2 = cv2.imread('C:/Users/Bende/Documents/blender_hangar/render_5.png')
+img1 = cv2.imread('C:/Users/Bende/Documents/blender_hangar/case_A/render_5.png')
+img2 = cv2.imread('C:/Users/Bende/Documents/blender_hangar/case_A/render_1.png')
+
+# Rotate 90 degrees clockwise
+img1 = cv2.rotate(img1, cv2.ROTATE_90_CLOCKWISE)
+img2 = cv2.rotate(img2, cv2.ROTATE_90_CLOCKWISE)
 
 # Detect features and compute descriptors
 sift = cv2.SIFT_create()
